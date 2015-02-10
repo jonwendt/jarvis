@@ -1,6 +1,5 @@
 My personal helper program
 
-Should be able to wake me up with a voice message at a specified time.
-Repeat until I connect to the web server and answer a question?
-
-Need text to speech
+Repeat alarm every 5 min until I connect to the web server and answer a question?
+Alarm should play music after voice message.
+Alarm should be able to pull from feed of TODO list and read list.
