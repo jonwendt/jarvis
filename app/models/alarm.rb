@@ -10,7 +10,8 @@ class Alarm < ActiveRecord::Base
   def self.schedule_alarms
     alarms = Alarm.where("days = 'ALL'") # Implement days as string
     alarms.each do |alarm|
-      time = Time.now.utc.to_date + alarm.time.hour.hours + alarm.time.min.minutes
+      # Desired alarm time in UTC so it is not changed when saved to database
+      time = Date.today + alarm.time.hour.hours + alarm.time.min.minutes + Time.zone.formatted_offset.to_f.hours
       AlarmBellJob.perform_at(time, alarm.id)
     end
   end
