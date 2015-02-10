@@ -1,7 +1,9 @@
 class Alarm < ActiveRecord::Base
+  include Speech
+
   def play_message
     message = self.message + ". The time is now #{Time.now.in_time_zone.strftime('%l:%M %P')}"
-    `#{Rails.root.join('bin')}/speech.sh "#{message}"`
+    say(message)
     return message
   end
 
