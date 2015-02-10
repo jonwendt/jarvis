@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source "http://3b607e3e:8c9e5436@www.mikeperham.com/rubygems/"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -28,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 
-gem 'sidekiq-pro'
+gem 'sidekiq'
 gem 'whenever'
 gem 'redis'
 
