@@ -1,0 +1,6 @@
+My personal helper program
+
+Should be able to wake me up with a voice message at a specified time.
+Repeat until I connect to the web server and answer a question?
+
+Need text to speech
