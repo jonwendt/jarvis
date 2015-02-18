@@ -19,5 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 every 1.day do
-  runner 'Alarm.schedule_jobs'
+  runner 'Alarm.schedule_alarms'
+end
+
+every '0 11-19/2 * * *' do
+  runner 'Task.remind_random_incomplete'
 end
