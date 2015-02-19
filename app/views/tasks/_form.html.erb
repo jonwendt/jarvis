@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="actions">
+    <p>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </p>
+    <br>
+    <p>
+      <%= f.label :minutes %>
+      <%= f.number_field :minutes %>
+    </p>
+    
     <%= f.submit %>
   </div>
 <% end %>

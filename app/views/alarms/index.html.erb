@@ -1,4 +1,6 @@
-<h1>Listing alarms</h1>
+<h1>Alarms</h1>
+
+<hr>
 
 <table>
   <thead>
@@ -10,9 +12,7 @@
   <tbody>
     <% @alarms.each do |alarm| %>
       <tr>
-        <td><%= link_to 'Show', alarm %></td>
-        <td><%= link_to 'Edit', edit_alarm_path(alarm) %></td>
-        <td><%= link_to 'Destroy', alarm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to alarm.time.strftime('%-l:%M %p'), edit_alarm_path(alarm) %></td>
       </tr>
     <% end %>
   </tbody>

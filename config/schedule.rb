@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 every 1.day do
   runner 'Alarm.schedule_alarms'
+  runner 'Task.clear_completed'
 end
 
 every '0 11-19/2 * * *' do

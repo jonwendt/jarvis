@@ -42,7 +42,7 @@ class AlarmsController < ApplicationController
   def update
     respond_to do |format|
       if @alarm.update(alarm_params)
-        format.html { redirect_to @alarm, notice: 'Alarm was successfully updated.' }
+        format.html { redirect_to alarms_path, notice: 'Alarm was successfully updated.' }
         format.json { render :show, status: :ok, location: @alarm }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class AlarmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alarm_params
-      params[:alarm]
+      params[:alarm].permit(:time, :description)
     end
 end

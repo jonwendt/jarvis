@@ -12,6 +12,14 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <p>
+      <%= f.label :time %>
+      <%= f.time_field :time %>
+    </p>
+    <p>
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+    </p>
+      <%= f.submit %>
   </div>
 <% end %>

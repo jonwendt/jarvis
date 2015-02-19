@@ -1,19 +1,28 @@
-<h1>Listing tasks</h1>
+<h1>Tasks</h1>
 
-<table>
+<hr>
+
+<table class='table table-striped'>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Description</th>
+      <th>Minutes</th>
+      <th>Completed</th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <%= form_for(task) do |f| %>
+        <tr>
+          <td><%= link_to task.description, edit_task_path(task) %></td>
+          <td><%= task.minutes %></td>
+          <td>
+            <%= f.number_field :completed %>
+            <%= f.submit %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
