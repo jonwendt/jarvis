@@ -5,11 +5,16 @@ module Speech
     self.class.say(message)
   end
 
+  def play_song(path)
+    self.class.play_song(path)
+  end
+
   module ClassMethods
     # Splits the message into chunks of 100 characters so Google's voice translate
     # api will accept it and return an mp3, which is played with mpg123
     # FIXME - will not work with >100 strings with no spaces
     def say(message)
+      `amixer set PCM -- 1000`
       chunk = '' # <= 100 characters
       for word in message.split(' ')
         if (chunk + ' ' + word).length > 100
@@ -20,5 +25,11 @@ module Speech
       end
       `mpg123 -q "http://translate.google.com/translate_tts?tl=en&q=#{chunk}"`
     end
+
+    def play_song(path)
+      `amixer set PCM -- -700`
+      `mpg123 "#{path}"`
+    end
+
   end
 end

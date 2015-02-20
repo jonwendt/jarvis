@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150218090209) do
   create_table "tasks", force: true do |t|
     t.string   "description"
     t.integer  "minutes"
-    t.integer  "completed"
+    t.integer  "completed",   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
