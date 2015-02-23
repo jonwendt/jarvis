@@ -14,7 +14,7 @@ module Speech
     # api will accept it and return an mp3, which is played with mpg123
     # FIXME - will not work with >100 strings with no spaces
     def say(message)
-      `amixer set PCM -- 1000`
+      `amixer set PCM -- -500`
       chunk = '' # <= 100 characters
       for word in message.split(' ')
         if (chunk + ' ' + word).length > 100
@@ -27,7 +27,7 @@ module Speech
     end
 
     def play_song(path)
-      `amixer set PCM -- -700`
+      `amixer set PCM -- -1500`
       `mpg123 "#{path}"`
     end
 

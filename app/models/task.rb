@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
     task = self.not_completed.shuffle.first
     return nil unless task
 
-    message = "You have to #{task.description} for #{task.minutes - task.completed} more minutes today. Why not work on that now?"
+    message = "#{task.description} for #{task.minutes - task.completed} minutes."
     say(message)
 
     return message
