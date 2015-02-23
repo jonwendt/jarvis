@@ -1,7 +1,7 @@
 class Task < ActiveRecord::Base
   include Speech
 
-  def self.remind_random_imcomplete
+  def self.remind_random_incomplete
     task = self.not_completed.shuffle.first
     return nil unless task
 
