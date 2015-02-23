@@ -19,7 +19,7 @@
           <td><%= task.minutes %></td>
           <td>
             <%= f.number_field :completed %>
-            <%= f.submit %>
+            <%= f.submit 'Update Task', class: 'btn btn-default' %>
           </td>
         </tr>
       <% end %>
@@ -29,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path, class: 'btn btn-primary' %>
