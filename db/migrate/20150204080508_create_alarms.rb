@@ -1,9 +1,9 @@
 class CreateAlarms < ActiveRecord::Migration
   def change
     create_table :alarms do |t|
-      t.time :time
+      t.time :time, required: true
       t.string :message
-      t.string :days
+      t.string :days, default: 'ALL'
 
       t.timestamps
     end

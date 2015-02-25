@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :recipes
+
+  resources :meal_times
+
   root 'home#index'
   resources :tasks
   resources :alarms

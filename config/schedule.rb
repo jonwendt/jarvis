@@ -20,6 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 every 1.day do
   runner 'Alarm.schedule_alarms'
+  runner 'MealTime.schedule_meal_times'
   runner 'Task.clear_completed'
 end
 

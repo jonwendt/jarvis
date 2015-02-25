@@ -3,3 +3,5 @@ My personal helper program
 Repeat alarm every 5 min until I connect to the web server and answer a question?
 Alarm should play music after voice message.
 Alarm should be able to pull from feed of TODO list and read list.
+
+Remind me of mealtimes, and give me recipes based on ingredients I have. Query some recipe site or use from a "liked recipes" list for my account
