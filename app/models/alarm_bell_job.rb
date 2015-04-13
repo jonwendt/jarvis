@@ -1,6 +1,7 @@
 class AlarmBellJob
   include Sidekiq::Worker
   include Speech
+  require 'sidekiq/api'
   sidekiq_options :retry => false, :backtrace => true
 
   def perform(id)
@@ -18,6 +19,7 @@ class AlarmBellJob
     alarm.play_message
     return if cancelled?
     play_song(songs.shift)
+    say "If you are not standing up by now, you will fall back asleep and be mad at yourself later. I'm not going to remind you to get up again."
   end
 
   def cancelled?

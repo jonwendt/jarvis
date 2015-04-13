@@ -1,5 +1,5 @@
 class AlarmsController < ApplicationController
-  before_action :set_alarm, only: [:show, :edit, :update, :destroy]
+  before_action :set_alarm, only: [:show, :edit, :update, :destroy, :quiet]
 
   # GET /alarms
   # GET /alarms.json
