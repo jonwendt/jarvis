@@ -13,7 +13,7 @@ class MealTime < ActiveRecord::Base
   end
 
   def play_message
-    message = "Time for #{self.name}! The time is #{self.time}, how about making #{self.recipe.name}. The recipe is listed on the \"today's meals\" page."
+    message = "Time for #{self.name}! The time is #{self.time}, so how about making #{self.recipe.name}. That is not a suggestion. Do it. Or else."
     say(message)
 
     return message

@@ -5,3 +5,11 @@ Alarm should play music after voice message.
 Alarm should be able to pull from feed of TODO list and read list.
 
 Remind me of mealtimes, and give me recipes based on ingredients I have. Query some recipe site or use from a "liked recipes" list for my account
+
+Sync with meal plan calorie counter, and play reminder messages
+
+
+Jarvis should have a conversation with you. After reminding you to work for 15 minutes, should ask you if you were listening after 5 minutes. Must respond to Jarvis with "Wait 1 hour", "I already did it", or "Not today", something like that. If you don't, Jarvis will pester you. "Why did you even create me if you're not going to listen to me."
+Jarvis should have personality.
+Can have phrases with certain contexts like "angry", "encouraging", etc. When a situation calls for an angry response, Jarvis can pull from the appropriate phrases.
+If you miss entering tasks multiple days in a row, Jarvis should mention it. "Come on, man. It's been three days since you've told me you've completed a task. Either you're not using me as I was designed to be used, or you are a lazy piece of shit. So which is it? Did you offend me? Or yourself?"

@@ -61,6 +61,14 @@ class AlarmsController < ApplicationController
     end
   end
 
+  def quiet
+    AlarmBellJob.cancel!(@alarm.id)
+
+    respond_to do |format|
+      format.js { render text: 'Alarm quieted.' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alarm
