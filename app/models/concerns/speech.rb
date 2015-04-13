@@ -13,6 +13,7 @@ module Speech
     # Splits the message into chunks of 100 characters so Google's voice translate
     # api will accept it and return an mp3, which is played with mpg123
     # FIXME - will not work with >100 strings with no spaces
+    # FIXME - change to download all mp3's before starting to play messages, then play them quicker.
     def say(message)
       `amixer set PCM -- -500`
       chunk = '' # <= 100 characters

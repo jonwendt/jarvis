@@ -1,5 +1,5 @@
 class AlarmsController < ApplicationController
-  before_action :set_alarm, only: [:show, :edit, :update, :destroy]
+  before_action :set_alarm, only: [:show, :edit, :update, :destroy, :quiet]
 
   # GET /alarms
   # GET /alarms.json
@@ -58,6 +58,14 @@ class AlarmsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to alarms_url, notice: 'Alarm was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def quiet
+    AlarmBellJob.cancel!(@alarm.id)
+
+    respond_to do |format|
+      format.js { render text: 'Alarm quieted.' }
     end
   end
 

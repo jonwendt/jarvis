@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :tasks
-  resources :alarms
+  resources :alarms do
+    member do
+      get :quiet
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

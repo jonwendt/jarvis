@@ -27,3 +27,7 @@ end
 every '0 11-19/2 * * *' do
   runner 'Task.remind_random_incomplete'
 end
+
+every '0 23 * * *' do
+  runner 'Task.remind_all_incomplete'
+end

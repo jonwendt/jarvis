@@ -20,6 +20,7 @@
       <%= f.label :message %>
       <%= f.text_area :message %>
     </p>
-      <%= f.submit 'Update Alarm', class: 'btn btn-default' %>
+    <%= f.submit 'Update Alarm', class: 'btn btn-default' %>
+    <%= link_to 'Quiet Alarm Bell', quiet_alarm_path(@alarm), remote: true, class: 'btn btn-primary' %>
   </div>
 <% end %>
