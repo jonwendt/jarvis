@@ -12,18 +12,18 @@
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
-      <%= form_for(task) do |f| %>
-        <tr>
-          <td><%= link_to task.description, edit_task_path(task) %></td>
-          <td><%= task.minutes %></td>
-          <td>
+    <tr>
+      <% @tasks.each do |task| %>
+        <td><%= link_to task.description, edit_task_path(task) %></td>
+        <td><%= task.minutes %></td>
+        <td>
+          <%= form_for(task) do |f| %>
             <%= f.number_field :completed %>
-            <%= f.submit 'Update Task', class: 'btn btn-default' %>
-          </td>
-        </tr>
+            <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
+          <% end %>
+        </td>
       <% end %>
-    <% end %>
+    </tr>
   </tbody>
 </table>
 
