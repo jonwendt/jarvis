@@ -13,7 +13,7 @@ class MealTime < ActiveRecord::Base
   end
 
   def play_message
-    message = "Time for #{self.name}! The time is #{self.time}, so how about making #{self.recipe.name}. That is not a suggestion. Do it. Or else."
+    message = "Time for #{self.name}! The time is #{self.time.in_time_zone.strftime('-%l:%M %P')}, so how about making #{self.recipe.name}. That is not a suggestion. Do it. Or else."
     say(message)
 
     return message
