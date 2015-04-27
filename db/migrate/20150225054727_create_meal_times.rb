@@ -1,6 +1,8 @@
 class CreateMealTimes < ActiveRecord::Migration
   def change
     create_table :meal_times do |t|
+      t.integer :user_id
+
       t.string :name, required: true
       t.time :time, required: true
       t.string :meal_type

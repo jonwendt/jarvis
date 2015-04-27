@@ -5,6 +5,10 @@ module Speech
     self.class.say(message)
   end
 
+  def whisper(message)
+    self.class.whisper(message)
+  end
+
   def play_song(path)
     self.class.play_song(path)
   end
@@ -16,6 +20,15 @@ module Speech
     # FIXME - change to download all mp3's before starting to play messages, then play them quicker.
     def say(message)
       `amixer set PCM -- -500`
+      speech(message)
+    end
+
+    def whisper(message)
+      `amixer set PCM -- -2500`
+      speech(message)
+    end
+
+    def speech(message)
       chunk = '' # <= 100 characters
       for word in message.split(' ')
         if (chunk + ' ' + word).length > 100

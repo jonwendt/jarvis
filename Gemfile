@@ -34,6 +34,10 @@ gem 'sidekiq'
 gem 'whenever'
 gem 'redis'
 
+gem 'devise'
+
+gem 'acts-as-taggable-on'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
