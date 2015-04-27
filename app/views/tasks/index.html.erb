@@ -12,8 +12,8 @@
   </thead>
 
   <tbody>
-    <tr>
-      <% @tasks.each do |task| %>
+    <% @tasks.each do |task| %>
+      <tr>
         <td><%= link_to task.description, edit_task_path(task) %></td>
         <td><%= task.minutes %></td>
         <td>
@@ -22,8 +22,8 @@
             <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
           <% end %>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

@@ -77,6 +77,6 @@ class AlarmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alarm_params
-      params[:alarm].permit(:time, :description)
+      params[:alarm].permit(:time, :description, :message)
     end
 end

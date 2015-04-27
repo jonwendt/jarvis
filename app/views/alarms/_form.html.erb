@@ -13,12 +13,12 @@
 
   <div class="actions">
     <p>
-      <%= f.label :time %>
+      <%= f.label :time %><br>
       <%= f.time_field :time %>
     </p>
     <p>
-      <%= f.label :message %>
-      <%= f.text_area :message %>
+      <%= f.label :message, "Message (leave blank to auto generate)" %><br>
+      <%= f.text_area :message, cols: 30, rows: 5 %>
     </p>
     <%= f.submit 'Update Alarm', class: 'btn btn-default' %>
     <%= link_to 'Quiet Alarm Bell', quiet_alarm_path(@alarm), remote: true, class: 'btn btn-primary' %>

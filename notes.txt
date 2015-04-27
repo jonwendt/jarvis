@@ -13,3 +13,11 @@ Jarvis should have a conversation with you. After reminding you to work for 15 m
 Jarvis should have personality.
 Can have phrases with certain contexts like "angry", "encouraging", etc. When a situation calls for an angry response, Jarvis can pull from the appropriate phrases.
 If you miss entering tasks multiple days in a row, Jarvis should mention it. "Come on, man. It's been three days since you've told me you've completed a task. Either you're not using me as I was designed to be used, or you are a lazy piece of shit. So which is it? Did you offend me? Or yourself?"
+
+
+Have User, which contains information about the people Jarvis will be addressing (name, gender, preferred mood?)
+
+Mood - defines how Jarvis should speak. (insulting, encouraging, angry, explicit, etc)
+Message - will have a message, an optional event to be associated with (waking up), and associated moods
+
+Should be able to export/import "Personality", which will include messages and moods
