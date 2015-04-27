@@ -4,7 +4,7 @@ class CreateMessages < ActiveRecord::Migration
       t.integer :personality_id
 
       t.string :text
-      t.bool :subject
+      t.boolean :subject
 
       t.timestamps
     end

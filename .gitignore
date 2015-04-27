@@ -5,3 +5,4 @@ tmp
 config/initializers/secrets.rb
 startup.sh
 lib/assets/music/*
+public/assets/
