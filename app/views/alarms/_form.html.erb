@@ -1,4 +1,8 @@
 <%= form_for(@alarm) do |f| %>
+  <h1><%= f.text_field :title, placeholder: 'Alarm' %></h1>
+
+  <hr>
+
   <% if @alarm.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@alarm.errors.count, "error") %> prohibited this alarm from being saved:</h2>
@@ -20,7 +24,19 @@
       <%= f.label :message, "Message (leave blank to auto generate)" %><br>
       <%= f.text_area :message, cols: 30, rows: 5 %>
     </p>
+    <p>
+      <%= f.label :read_calendar %><br>
+      <%= f.check_box :read_calendar %>
+    </p>
+
     <%= f.submit 'Update Alarm', class: 'btn btn-default' %>
-    <%= link_to 'Quiet Alarm Bell', quiet_alarm_path(@alarm), remote: true, class: 'btn btn-primary' %>
+    <%= link_to 'Quiet Alarm Bell', quiet_alarm_path(@alarm), remote: true, class: 'btn btn-primary' if @alarm.persisted? %>
   </div>
+
+  <%= link_to 'Back', alarms_path, class: 'btn btn-info' %>
+  <%= link_to 'Delete', alarm_path(@alarm), method: :delete, class: 'btn btn-danger' if @alarm.persisted? %>
 <% end %>
+
+<script>
+  $('#alarm_message').elastic();
+</script>

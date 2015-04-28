@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427063053) do
+ActiveRecord::Schema.define(version: 20150427224827) do
 
   create_table "alarms", force: true do |t|
     t.time     "time"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150427063053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.boolean  "read_calendar"
   end
 
   create_table "meal_times", force: true do |t|

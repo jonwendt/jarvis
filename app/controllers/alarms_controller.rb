@@ -42,6 +42,9 @@ class AlarmsController < ApplicationController
   def update
     respond_to do |format|
       if @alarm.update(alarm_params)
+        if @alarm.read_calendar
+          Calendar.perform_async
+        end
         format.html { redirect_to alarms_path, notice: 'Alarm was successfully updated.' }
         format.json { render :show, status: :ok, location: @alarm }
       else
@@ -77,6 +80,6 @@ class AlarmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alarm_params
-      params[:alarm].permit(:time, :description, :message)
+      params[:alarm].permit(:time, :description, :message, :title, :read_calendar)
     end
 end

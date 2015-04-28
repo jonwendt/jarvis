@@ -12,7 +12,7 @@ class Alarm < ActiveRecord::Base
     if self.message.blank?
       message = self.user.personality.messages.tagged_with(self.user.personality.mood_list, any: true).shuffle.first.build_text(self.title)
     else
-      message = self.message + ". The time is now #{Time.now.in_time_zone.strftime('-%l:%M %P')}"
+      message = self.message + ". The time is now #{Time.now.in_time_zone.strftime('%-l:%M %P')}"
     end
 
     say(message)

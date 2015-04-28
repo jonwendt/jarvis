@@ -39,11 +39,11 @@
   </nav>
 
   <div class='container' id='body-container'>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
+    <% if flash[:notice] %>
+      <div class="alert alert-success"><%= notice %></div>
     <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
+    <% if flash[:alert] %>
+      <div class="alert alert-warning"><%= alert %></div>
     <% end %>
 
     <%= yield %>

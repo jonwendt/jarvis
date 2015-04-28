@@ -12,7 +12,7 @@
   <tbody>
     <% @alarms.each do |alarm| %>
       <tr>
-        <td><%= link_to alarm.time.strftime('%-l:%M %p'), edit_alarm_path(alarm) %></td>
+        <td><%= link_to "#{alarm.title + ' - ' unless alarm.title.blank?}" + alarm.time.strftime('%-l:%M %p'), edit_alarm_path(alarm) %></td>
       </tr>
     <% end %>
   </tbody>
