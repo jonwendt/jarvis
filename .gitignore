@@ -2,7 +2,7 @@ log/*.log
 dump.rdb
 db/*.sqlite3
 tmp
-config/initializers/secrets.rb
+config/secrets.yml
 startup.sh
 lib/assets/music/*
 public/assets/

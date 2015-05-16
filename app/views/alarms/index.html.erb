@@ -2,22 +2,17 @@
 
 <hr>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @alarms.each do |alarm| %>
+  <a class="btn btn-default btn-lg" href="<%= edit_alarm_path(alarm) %>" style="padding: 20px; margin-right: 15px">
+    <%= alarm.title %>
+    <br>
+    <i class="fa fa-clock-o fa-5x"></i>
+    <br>
+    <%= alarm.time.strftime('%-l:%M %p') %>
+  </a>
+<% end %>
 
-  <tbody>
-    <% @alarms.each do |alarm| %>
-      <tr>
-        <td><%= link_to "#{alarm.title + ' - ' unless alarm.title.blank?}" + alarm.time.strftime('%-l:%M %p'), edit_alarm_path(alarm) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<br>
 <br>
 
 <%= link_to 'New Alarm', new_alarm_path, class: 'btn btn-primary' %>

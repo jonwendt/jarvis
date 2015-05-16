@@ -1,1 +1,15 @@
-<h1>Sup, I'm Jarvis.</hi>
+<h1>Hello, I'm Jarvis.</hi>
+
+<% if current_user %>
+  <hr>
+
+  <h2>Personality options</h2>
+
+  Moods:
+  <p>
+    <% current_user.personality.moods.pluck(:name).each do |mood| %>
+      <%= label_tag mood %>
+      <%= check_box_tag mood %>
+    <% end %>
+  </p>
+<% end %>

@@ -1,5 +1,11 @@
 My personal helper program
 
+Can choose to give access to google account, and can read calendars, tell you when you have important emails (Can make extension where whenever you order something on amazon, it waits for an email mentioning the order number and says notifications like "it's shipped" or "it just arrived, check the mail")
+
+Maybe refactor Speech into Audio, which has broader audio functionality, and include Speech in that.
+
+Voice commands
+
 Repeat alarm every 5 min until I connect to the web server and answer a question?
 Alarm should play music after voice message.
 Alarm should be able to pull from feed of TODO list and read list.
@@ -21,3 +27,5 @@ Mood - defines how Jarvis should speak. (insulting, encouraging, angry, explicit
 Message - will have a message, an optional event to be associated with (waking up), and associated moods
 
 Should be able to export/import "Personality", which will include messages and moods
+
+<!-- UI change: big blocks that have alarm icon on them and say the time. -->

@@ -13,6 +13,7 @@ class Task < ActiveRecord::Base
     return message
   end
 
+  # TODO - schedule a job to remind X number of minutes before midnight, X being the sum of the uncompleted minutes of tasks.
   def self.remind_all_incomplete
     incomplete_tasks = self.not_completed
     all_tasks_count = self.count

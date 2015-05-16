@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :user_id
 
       t.string :description
-      t.integer :minutes
+      t.integer :minutes, default: 0
       t.integer :completed, default: 0
 
       t.timestamps

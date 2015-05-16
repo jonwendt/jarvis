@@ -1,4 +1,5 @@
 class AlarmsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_alarm, only: [:show, :edit, :update, :destroy, :quiet]
 
   # GET /alarms
@@ -42,8 +43,8 @@ class AlarmsController < ApplicationController
   def update
     respond_to do |format|
       if @alarm.update(alarm_params)
-        if @alarm.read_calendar
-          Calendar.perform_async
+        if @alarm.read_calendar and not current_user.token
+          format.html { redirect_to '/auth/google_oauth2' }
         end
         format.html { redirect_to alarms_path, notice: 'Alarm was successfully updated.' }
         format.json { render :show, status: :ok, location: @alarm }

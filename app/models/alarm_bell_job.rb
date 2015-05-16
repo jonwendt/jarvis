@@ -9,7 +9,7 @@ class AlarmBellJob
     songs = Dir[Rails.root.join('lib', 'assets', 'music', '*')].shuffle[0..2]
     alarm = Alarm.find(id)
     alarm.play_message
-    Calendar.read_events if alarm.read_calendar
+    Calendar.perform_async(alarm.user_id) if alarm.read_calendar
     return if cancelled?
     songs.first.present? ? play_song(songs.shift) : (sleep 60)
     return if cancelled?

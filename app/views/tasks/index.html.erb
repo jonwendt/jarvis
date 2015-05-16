@@ -2,31 +2,44 @@
 
 <hr>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Minutes</th>
-      <th>Completed</th>
-    </tr>
-  </thead>
+<% @tasks.each do |task| %>
+  <div class='col-md-12'>
+    <div class='col-md-6'>
+      <%= pie_chart({ "Completed" => task.completed, 'To-do' => task.minutes - task.completed }, colors: ["#71000D", "#BE0016"],
+        library: { 
+          title: { 
+            text: link_to(task.description, edit_task_path(task)),
+            style: { 'font-size' => '24px' },
+            'useHTML' => true
+          },
+          tooltip: {
+            'valueSuffix' => ' minutes'
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.y} minutes',
+              }
+            }
+          }
+        }
+      ) %>
+    </div>
+    <div class='col-md-6'>
+      <p class='lead'>
+        To-do: <%= task.minutes - task.completed %> minutes
+        <br>
+        <%= form_for(task) do |f| %>
+        <%= f.label :completed %>
+          <%= f.number_field :completed %>
+          <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
+        <% end %>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to task.description, edit_task_path(task) %></td>
-        <td><%= task.minutes %></td>
-        <td>
-          <%= form_for(task) do |f| %>
-            <%= f.number_field :completed %>
-            <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      </p>
+    </div>
+  </div>
+  <hr>
+<% end %>
 
 <%= link_to 'New Task', new_task_path, class: 'btn btn-primary' %>

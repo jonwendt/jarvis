@@ -38,7 +38,13 @@ gem 'devise'
 
 gem 'acts-as-taggable-on'
 
-gem 'google-api-client'
+gem 'omniauth', '~> 1.2.2'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', :require => 'google/api_client'
+
+
+gem "chartkick"
+
 
 
 # Use ActiveModel has_secure_password
