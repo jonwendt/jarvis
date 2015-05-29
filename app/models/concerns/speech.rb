@@ -13,6 +13,10 @@ module Speech
     self.class.play_song(path)
   end
 
+  def say_time
+    self.class.say("The time is now #{Time.now.in_time_zone.strftime('%-l:%M %P')}")
+  end
+
   module ClassMethods
     # Splits the message into chunks of 100 characters so Google's voice translate
     # API will accept it and return an mp3, which is played with mpg123

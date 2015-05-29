@@ -12,10 +12,11 @@ class Alarm < ActiveRecord::Base
     if self.message.blank?
       message = self.user.personality.messages.tagged_with(self.user.personality.mood_list, any: true).shuffle.first.build_text(self.title)
     else
-      message = self.message + say_time
+      message = self.message
     end
 
     say(message)
+    say_time
     return message
   end
 

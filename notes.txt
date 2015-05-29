@@ -28,4 +28,6 @@ Message - will have a message, an optional event to be associated with (waking u
 
 Should be able to export/import "Personality", which will include messages and moods
 
-<!-- UI change: big blocks that have alarm icon on them and say the time. -->
+Schedule page. Combine calendar events and incomplete tasks to show a schedule. Things can be rearranged, auto generated.
+
+Task respond "Not today" Track skips and remind user if they skip a lot

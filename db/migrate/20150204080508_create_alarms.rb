@@ -4,8 +4,10 @@ class CreateAlarms < ActiveRecord::Migration
       t.integer :user_id
 
       t.time :time, required: true
+      t.string :title
       t.string :message
       t.string :days, default: 'ALL'
+      t.boolean :read_calendar
 
       t.timestamps
     end
