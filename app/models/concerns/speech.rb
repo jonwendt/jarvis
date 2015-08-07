@@ -18,9 +18,6 @@ module Speech
   end
 
   module ClassMethods
-    # Splits the message into chunks of 100 characters so Google's voice translate
-    # API will accept it and return an mp3, which is played with mpg123
-    # FIXME - will not work with >100 strings with no spaces
     def speech(message)
       chunk = '' # <= 100 characters
       for word in message.split(' ')
@@ -36,11 +33,10 @@ module Speech
       return message
     end
 
-    # Downloads all chunks before playing them. This was an experiement to see if I could reduce
-    # the lag between the mp3's playing, but it doesn't seem to help much (files are only ~25kb).
+    # Downloads all chunks before playing them, stitching them together without the split second
+    # of white nosie at the end of each mp3 (kinda hacky) to reduce the lag between the mp3's playing.
     def speech_download_first(message)
       chunks = []
-      files = []
       chunk = '' # <= 100 characters
 
       # Split message into chunks of 100 characters
@@ -56,37 +52,32 @@ module Speech
       end
       chunks << chunk unless chunk.blank?
 
-      # Download each chunk
+      # Download each chunk, remove trailing white noise, save to same file.
+      file_name = 'chunks_stitched.mp3'
+      file = open(file_name, 'w:ASCII-8BIT')
       url = URI.parse('http://translate.google.com/')
       Net::HTTP.start(url.host, url.port) do |http|
         chunks.each_with_index do |chunk, index|
-          name = "chunk_#{index}.mp3"
-          files << name
-          f = open("#{name}", "w:ASCII-8BIT")
           http.request_get("/translate_tts?tl=en&q=#{URI::encode(chunk)}") do |resp|
-            f.write(resp.body)
-            f.close
+            file.write(resp.body.gsub('UUUU', '')) #FIXME to less hacky solution. 
           end
         end
       end
-      resp = http.request_get("/translate_tts?tl=en&q=#{URI::encode(chunk)}").body.gsub('UUUU', '') 
+      file.close
 
-
-      # Play and delete each file
-      files.each do |file_name|
-        `mpg123 -q #{file_name}`
-        File.delete(file_name)
-      end
+      # Play and delete the file
+      `mpg123 -q #{file_name}`
+      File.delete(file_name)
     end
 
     def say(message)
       `amixer set PCM -- -500`
-      speech(message)
+      speech_download_first(message)
     end
 
     def whisper(message)
       `amixer set PCM -- -2500`
-      speech(message)
+      speech_download_first(message)
     end
 
     def play_song(path)

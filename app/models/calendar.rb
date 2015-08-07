@@ -3,6 +3,7 @@ require 'google/api_client'
 class Calendar
   include Sidekiq::Worker
   include Speech
+  sidekiq_options retry: false, backtrace: true
 
   APPLICATION_NAME = 'Jarvis Calendar API'
 
@@ -24,12 +25,13 @@ class Calendar
         :timeMin => Time.now.iso8601,
         :timeMax => (Time.now + 2.days).iso8601 })
 
+    puts "Upcoming events:"
     if results.data.items.empty?
       puts "No upcoming events found" 
     else
-      say "There are upcoming events in your calendar."
+      say "Upcoming events."
       results.data.items.each do |event|
-        start = event.start.date || event.start.date_time
+        start = (event.start.date || event.start.date_time).to_date
         if start.day == Time.now.day
           date = 'today'
         elsif start.day == Time.now.day + 1
