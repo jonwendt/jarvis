@@ -25,14 +25,14 @@ module Speech
       chunk = '' # <= 100 characters
       for word in message.split(' ')
         if (chunk + ' ' + word).length > 100
-          `mpg123 -q "http://translate.google.com/translate_tts?tl=en&q=#{chunk}"`
+          `mpg123 -q "http://tts-api.com/tts.mp3?q=#{chunk}"`
           chunk.clear
           chunk = word
         else
           chunk += ' ' + word
         end
       end
-      `mpg123 -q "http://translate.google.com/translate_tts?tl=en&q=#{chunk}"` unless chunk.blank?
+      `mpg123 -q "http://tts-api.com/tts.mp3?q=#{chunk}"` unless chunk.blank?
       return message
     end
 
@@ -69,6 +69,8 @@ module Speech
           end
         end
       end
+      resp = http.request_get("/translate_tts?tl=en&q=#{URI::encode(chunk)}").body.gsub('UUUU', '') 
+
 
       # Play and delete each file
       files.each do |file_name|

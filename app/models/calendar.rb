@@ -24,11 +24,10 @@ class Calendar
         :timeMin => Time.now.iso8601,
         :timeMax => (Time.now + 2.days).iso8601 })
 
-    puts "Upcoming events:"
     if results.data.items.empty?
       puts "No upcoming events found" 
     else
-      say "Upcoming events."
+      say "There are upcoming events in your calendar."
       results.data.items.each do |event|
         start = event.start.date || event.start.date_time
         if start.day == Time.now.day

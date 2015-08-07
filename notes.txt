@@ -1,5 +1,7 @@
 My personal helper program
 
+"Screensaver mode" - Will display on RaspberryPi's hdmi output. Have a pretty display that shows tasks you need to complete. When audio is played, maybe have some visualization overlayed. Could be cool for speech and music playing.
+
 Can choose to give access to google account, and can read calendars, tell you when you have important emails (Can make extension where whenever you order something on amazon, it waits for an email mentioning the order number and says notifications like "it's shipped" or "it just arrived, check the mail")
 
 Maybe refactor Speech into Audio, which has broader audio functionality, and include Speech in that.
