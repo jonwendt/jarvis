@@ -3,6 +3,8 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
 
+  serialize :preferred_time
+
   def self.remind_random_incomplete
     incomplete_task = self.not_completed.shuffle.first
     return nil unless incomplete_task
@@ -35,5 +37,9 @@ class Task < ActiveRecord::Base
 
   def self.clear_completed
     self.all.each { |t| t.update_attributes(completed: 0) }
+  end
+
+  def self.preferred_times
+    ['none', 'morning', 'afternoon', 'evening']
   end
 end

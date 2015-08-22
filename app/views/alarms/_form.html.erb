@@ -29,12 +29,14 @@
       <%= f.check_box :read_calendar %>
     </p>
 
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
     <%= f.submit 'Update Alarm', class: 'btn btn-default' %>
     <%= link_to 'Quiet Alarm Bell', quiet_alarm_path(@alarm), remote: true, class: 'btn btn-primary' if @alarm.persisted? %>
   </div>
 
-  <%= link_to 'Back', alarms_path, class: 'btn btn-info' %>
   <%= link_to 'Delete', alarm_path(@alarm), method: :delete, class: 'btn btn-danger' if @alarm.persisted? %>
+<%= link_to 'Back', alarms_path, class: 'btn btn-info' %>
 <% end %>
 
 <script>

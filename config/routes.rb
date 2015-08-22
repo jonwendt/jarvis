@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :scheduled_events
+
+  resources :schedules do
+    collection do
+      get :today
+    end
+  end
+
   devise_for :users
 
   resources :recipes

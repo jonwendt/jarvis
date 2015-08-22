@@ -72,12 +72,12 @@ module Speech
 
     def say(message)
       `amixer set PCM -- -500`
-      speech_download_first(message)
+      speech(message)
     end
 
     def whisper(message)
       `amixer set PCM -- -2500`
-      speech_download_first(message)
+      speech(message)
     end
 
     def play_song(path)

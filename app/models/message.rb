@@ -11,6 +11,14 @@ class Message < ActiveRecord::Base
       self.text
     end
   end
+
+  def current_user
+    begin
+      return self.personality.user
+    rescue
+      return nil
+    end
+  end
 end
 
 # Messages should have subject bool. If there is a subject, then 

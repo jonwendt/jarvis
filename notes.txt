@@ -1,5 +1,9 @@
 My personal helper program
 
+Schedule page. Combine calendar events and incomplete tasks to show a schedule. Things can be rearranged, auto generated. Tell Jarvis what time you want to wake up. Alarm will be set for then and meal times will be scheduled accordingly. Sprinkle tasks throughout the day. Rearrange when completed/ignored. Task priority. Time priority (morning, afternoon, night, any combination)
+
+Save schedules. Analyze the completion of tasks on past days. Something that barely gets completed should be brought up with user. ("Did you actually do any of these and just forget? How many did you do? A little, some, a lot." "Would you like to prioritize this?")
+
 "Screensaver mode" - Will display on RaspberryPi's hdmi output. Have a pretty display that shows tasks you need to complete. When audio is played, maybe have some visualization overlayed. Could be cool for speech and music playing.
 
 Can choose to give access to google account, and can read calendars, tell you when you have important emails (Can make extension where whenever you order something on amazon, it waits for an email mentioning the order number and says notifications like "it's shipped" or "it just arrived, check the mail")
@@ -29,7 +33,5 @@ Mood - defines how Jarvis should speak. (insulting, encouraging, angry, explicit
 Message - will have a message, an optional event to be associated with (waking up), and associated moods
 
 Should be able to export/import "Personality", which will include messages and moods
-
-Schedule page. Combine calendar events and incomplete tasks to show a schedule. Things can be rearranged, auto generated.
 
 Task respond "Not today" Track skips and remind user if they skip a lot

@@ -30,6 +30,6 @@ class AlarmBellJob
   def self.cancel!(alarm_id)
     worker = Sidekiq::Workers.new.to_a.select { |worker| worker.third['payload']['args'].first == alarm_id }.first
     jid = worker.third['payload']['jid']
-    Sidekiq.redis {|c| c.setex("cancelled-#{jid}", 86400, 1) }
+    Sidekiq.redis {|c| c.setex("cancelled-#{jid}", 3600, 1) }
   end
 end

@@ -6,4 +6,10 @@ class User < ActiveRecord::Base
 
   has_one :personality
   has_one :token
+
+  before_create :build_default_personality
+
+  def build_default_personality
+    self.build_personality
+  end
 end

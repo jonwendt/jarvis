@@ -21,6 +21,13 @@
       <%= f.label :minutes %>
       <%= f.number_field :minutes %>
     </p>
+    <br>
+    <p>
+      <%= f.label :preferred_time %>
+      <%= f.text_field :preferred_time %>
+    </p>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
     
     <%= f.submit 'Update Task', class: 'btn btn-default' %>
   </div>

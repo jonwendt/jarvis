@@ -3,43 +3,41 @@
 <hr>
 
 <% @tasks.each do |task| %>
-  <div class='col-md-12'>
-    <div class='col-md-6'>
-      <%= pie_chart({ "Completed" => task.completed, 'To-do' => task.minutes - task.completed }, colors: ["#71000D", "#BE0016"],
-        library: { 
-          title: { 
-            text: link_to(task.description, edit_task_path(task)),
-            style: { 'font-size' => '24px' },
-            'useHTML' => true
-          },
-          tooltip: {
-            'valueSuffix' => ' minutes'
-          },
-          plotOptions: {
-            pie: {
-              dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.y} minutes',
-              }
+  <div class='col-xs-12 task-row'>
+    <div class='row'>
+      <div class='col-xs-12 col-md-6'>
+        <%= pie_chart({ "Completed" => task.completed, 'To-do' => task.minutes - task.completed }, colors: ["#71000D", "#BE0016"],
+          library: { 
+            title: { 
+              text: link_to(task.description, edit_task_path(task)),
+              style: { 'font-size' => '24px' },
+              'useHTML' => true
+            },
+            tooltip: {
+              'valueSuffix' => ' minutes'
             }
           }
-        }
-      ) %>
-    </div>
-    <div class='col-md-6'>
-      <p class='lead'>
-        To-do: <%= task.minutes - task.completed %> minutes
-        <br>
-        <%= form_for(task) do |f| %>
-        <%= f.label :completed %>
-          <%= f.number_field :completed %>
-          <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
-        <% end %>
+        ) %>
+      </div>
+      <div class='col-xs-12 col-md-6'>
+        <p class='lead'>
+          To-do: <%= task.minutes - task.completed %> minutes
+          <br>
+          <%= form_for(task) do |f| %>
+          <%= f.label :completed %>
+            <%= f.number_field :completed, placeholder: (task.completed.to_s + ' minutes'), max: 1000000000, min: 0 %>
+            <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
+          <% end %>
 
-      </p>
+        </p>
+      </div>
     </div>
+    <hr>
   </div>
-  <hr>
 <% end %>
 
 <%= link_to 'New Task', new_task_path, class: 'btn btn-primary' %>
+
+<script>
+  // $('.task-row').append('<hr>');
+</script>
