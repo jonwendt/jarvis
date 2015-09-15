@@ -19,17 +19,13 @@ module Speech
 
   module ClassMethods
     def speech(message)
-      chunk = '' # <= 100 characters
-      for word in message.split(' ')
-        if (chunk + ' ' + word).length > 100
-          `mpg123 -q "http://tts-api.com/tts.mp3?q=#{chunk}"`
-          chunk.clear
-          chunk = word
-        else
-          chunk += ' ' + word
-        end
+      uri = URI("http://tts-api.com/tts.mp3?q=#{URI.encode message}")
+      while (res = Net::HTTP.get_response(uri)).code == '500' do
+        puts 'retrying'
       end
-      `mpg123 -q "http://tts-api.com/tts.mp3?q=#{chunk}"` unless chunk.blank?
+      redirect_url = res['location']
+      `mpg123 -q "#{redirect_url}"`
+      #`mpg123 -q "http://tts-api.com/tts.mp3?q=#{message}"`
       return message
     end
 

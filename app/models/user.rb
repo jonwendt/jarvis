@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_one :personality
   has_one :token
 
+  has_one :schedule
+  has_many :tasks
+  has_many :alarms
+
   before_create :build_default_personality
 
   def build_default_personality

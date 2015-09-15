@@ -3,10 +3,13 @@
 
 class Alarm < ActiveRecord::Base
   include Speech
+  require 'sidekiq/api'
 
   belongs_to :user
 
   acts_as_taggable_on :moods
+
+  after_save { self.class.schedule_alarms }
 
   def play_message
     if self.message.blank?
@@ -21,6 +24,7 @@ class Alarm < ActiveRecord::Base
   end
 
   def self.schedule_alarms
+    Sidekiq::ScheduledSet.new.clear # TODO - Only clear scheduled alarms tasks
     alarms = Alarm.where("days = 'ALL'") # Implement days as string
     alarms.each do |alarm|
       time = Date.today.in_time_zone + alarm.time.hour.hours + alarm.time.min.minutes

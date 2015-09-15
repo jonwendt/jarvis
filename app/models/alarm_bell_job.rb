@@ -2,7 +2,7 @@ class AlarmBellJob
   include Sidekiq::Worker
   include Speech
   require 'sidekiq/api'
-  sidekiq_options :retry => false, :backtrace => true
+  sidekiq_options retry: false, backtrace: true, queue: :alarms
 
   def perform(id)
     return if cancelled?

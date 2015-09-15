@@ -35,6 +35,10 @@ class Task < ActiveRecord::Base
     self.where('completed < minutes')
   end
 
+  def not_completed
+    self.where('completed < minutes')
+  end
+
   def self.clear_completed
     self.all.each { |t| t.update_attributes(completed: 0) }
   end
