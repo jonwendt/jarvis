@@ -1,28 +1,16 @@
-== README
+== Requirements
+* Ruby 2.1.5 (https://rvm.io)
+* mpg123 (<tt>sudo apt-get install mpg123</tt>)
+* bundler (<tt>gem install bundler</tt>)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Setup
 
-Things you may want to cover:
+To setup jarvis on your Raspberry Pi or home computer (the text-to-speech only works for Linux operating systems at the moment), follow these steps:
+1. Clone this repository. I put mine in my home directory.
+2. Open a shell in the jarvis directory, then install the required gems with <tt>bundle install</tt>
+3. To make sure that alarms are scheduled, run <tt>wheneverize .</tt> in the jarvis directory, and then <tt>whenever -w</tt> to update your crontab. Check your cron jobs using <tt>crontab -l</tt>
+4. If you have screen, you can start all the required processes by running the <tt>./startup.sh</tt> script.
 
-* Ruby version
+The Jarvis rails app will by default run on port 3000 of the local IP address of your Raspberry Pi. The web application can be accessed through the URL IP:PORT (example: http://192.168.1.111:3000)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Make an account and start creating tasks, alarms, or edit Jarvis's personality!
