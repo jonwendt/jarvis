@@ -8,6 +8,17 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+  # resources :users do
+  #   member do
+  #     post :change_personality
+  #   end
+  # end
+
+  resources :personalities do
+    member do
+      post :assign_to_user
+    end
+  end
 
   resources :recipes
 

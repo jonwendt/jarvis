@@ -9,6 +9,7 @@
   <%= csrf_meta_tags %>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 </head>
 <body>
   <nav class="navbar navbar-inverse" role="navigation">
@@ -27,12 +28,13 @@
         <ul class="nav navbar-nav">
           <%= navbar_link "Tasks", tasks_path %>
           <%= navbar_link "Alarms", alarms_path %>
+          <%= navbar_link "Schedule", today_schedules_path if current_user %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <% if not current_user %>
             <%= navbar_link("Sign In", new_user_session_path) %>
-            <%= navbar_link("Register", new_user_registration_path) %>
+            <%= navbar_link("Sign Up", new_user_registration_path) %>
           <% else %>
             <%= navbar_link(current_user.email, edit_user_registration_path) %>
             <li><%= link_to("Sign Out", destroy_user_session_path, method: :delete) %></li>

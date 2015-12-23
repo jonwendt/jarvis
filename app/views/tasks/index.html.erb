@@ -1,9 +1,10 @@
-<h1>Tasks</h1>
+<h1 style='display: inline-block'>Tasks</h1>
+
+<a href="<%= new_task_path %>"><i class="fa fa-plus-circle fa-3x" style="color: #337ab7; margin-left: 10px" data-toggle="tooltip" data-placement="top" title="New Task"></i></a>
 
 <hr>
 
-<% @tasks.each do |task| %>
-  <div class='col-xs-12 task-row'>
+<% @tasks.each_with_index do |task, index| %>
     <div class='row'>
       <div class='col-xs-12 col-md-6'>
         <%= pie_chart({ "Completed" => task.completed, 'To-do' => task.minutes - task.completed }, colors: ["#71000D", "#BE0016"],
@@ -28,16 +29,19 @@
             <%= f.number_field :completed, placeholder: (task.completed.to_s + ' minutes'), max: 1000000000, min: 0 %>
             <%= f.submit 'Update Task', method: :update, class: 'btn btn-default' %>
           <% end %>
-
         </p>
       </div>
     </div>
-    <hr>
-  </div>
+
+    <% if index != @tasks.count - 1 %>
+      <hr>
+    <% end %>
 <% end %>
+<hr>
 
-<%= link_to 'New Task', new_task_path, class: 'btn btn-primary' %>
 
-<script>
-  // $('.task-row').append('<hr>');
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 </script>

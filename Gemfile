@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'less-rails'
 
 gem 'sidekiq'
@@ -35,6 +35,8 @@ gem 'whenever'
 gem 'redis'
 
 gem 'devise'
+
+gem 'mechanize'
 
 gem 'acts-as-taggable-on'
 

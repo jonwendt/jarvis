@@ -1,15 +1,84 @@
-<h1>Hello, I'm Jarvis.</hi>
-
 <% if current_user %>
+  <div class='jumbotron' style='background-color: white; padding-left: 0;'>
+    <h1>Hello, I'm <%= current_user.personality.nil? ? 'Jarvis' : current_user.personality.name %></h1>
+
+    <h2>I'm here to help.</h2>
+  </div>
+
   <hr>
 
-  <h2>Personality options</h2>
+  <h3 style='display: inline; margin-right: 15px;'>Personality</h3>
 
-  Moods:
-  <p>
-    <% current_user.personality.moods.pluck(:name).each do |mood| %>
-      <%= label_tag mood %>
-      <%= check_box_tag mood %>
+  <a id='change-personality' class='btn btn-primary' style='float: right; z-height: 1000'>
+    Change
+  </a>
+
+  <div class='well' id='personalities-list' style='display: none; margin-top: 15px'>
+    <% Personality.all.each do |personality| %>
+      <p>
+        <%= link_to personality.name, assign_to_user_personality_path(personality), method: :post %>
+      </p>
     <% end %>
-  </p>
+
+  </div>
+
+  <hr>
+
+  <%= form_for current_user.personality do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <div class='row-fluid'>
+      <div class='well'>
+        <a class="btn btn-default btn-lg" href="#" style="padding: 20px; margin-right: 15px;">
+          Add Mood
+          <br>
+          <i class="fa fa-plus-circle fa-5x" style="color: #337ab7"></i>
+        </a>
+
+        <% (current_user.personality.mood_list.empty? ? Personality.default_moods : current_user.personality.mood_list).each do |mood| %>
+          <a class="btn btn-default btn-lg" href="#" style="padding: 20px; margin-right: 15px">
+            <%= mood %>
+            <br>
+            <i class="fa fa-clock-o fa-5x"></i>
+          </a>
+        <% end %>
+      </div class='well'>
+    </div>
+  <% end %>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Choose a personality</h4>
+        </div>
+        <div class="modal-body">
+          My personalities
+          <hr>
+          Top community personalities
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('#change-personality').click(function(event) {
+      event.preventDefault();
+      $('#personalities-list').slideToggle('fast', function() {
+
+      });
+      // $('#myModal').modal();
+    })
+  </script>
+
+<% else %>
+  <%= render partial: 'sign_in_invitation' %>
 <% end %>

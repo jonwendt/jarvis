@@ -12,36 +12,38 @@ class Schedule < ActiveRecord::Base
     start_time = self.date == Date.today ? self.wake_up_time : Time.now + 5.minutes
 
 
-    tasks = self.user.tasks.incomplete
+    tasks = self.user.tasks.not_completed
 
     #blocks
     hours_in_day = self.sleep_time - self.wake_up_time
     block_hours = hours_in_day / 3
 
     morning = { tasks: tasks.select { |t| t.preferred_time == 'morning' }, minutes: 0 }
-    morning[:minutes] = morning[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15
+    morning[:minutes] = morning[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15 unless morning[:tasks].empty?
 
     afternoon = { tasks: tasks.select { |t| t.preferred_time == 'afternoon' }, minutes: 0 }
-    afternoon[:minutes] = afternoon[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15
+    afternoon[:minutes] = afternoon[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15 unless afternoon[:tasks].empty?
 
     evening = { tasks: tasks.select { |t| t.preferred_time == 'evening' }, minutes: 0 }
-    evening[:minutes] = evening[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15
+    evening[:minutes] = evening[:tasks].map { |t| t.minutes }.reduce(:+) + morning[:tasks].count * 15 unless evening[:tasks].empty?
 
     anytime_tasks = tasks.select { |t| t.preferred_time == 'none' }
 
-    anytime_tasks.each do
+    anytime_tasks.each do |task|
       if morning[:minutes] <= block_hours * 60
-        morning[:tasks] << anytime_tasks.shift
-        morning[:minutes] += morning[:tasks].last.minutes + 15
+        morning[:tasks] << task
+        morning[:minutes] += task.minutes
+        self.scheduled_events.create(time: start_time + morning[:minutes], user_id: self.user_id, event: task)
       elsif afternoon[:minutes] <= block_hours * 60
-        afternoon[:tasks] << anytime_tasks.shift
-        afternoon[:minutes] += afternoon[:tasks].last.minutes + 15
+        afternoon[:tasks] << task
+        afternoon[:minutes] += task.minutes
+        self.scheduled_events.create(time: start_time + block_hours + afternoon[:minutes], user_id: self.user_id, event: task)
       elsif evening[:minutes] <= block_hours * 60
-        evening[:tasks] << anytime_tasks.shift
-        evening[:minutes] += evening[:tasks].last.minutes + 15
+        evening[:tasks] << task
+        evening[:minutes] += task.minutes
+        self.scheduled_events.create(time: start_time + block_hours * 2 + evening[:minutes], user_id: self.user_id, event: task)
       end
     end
-
 
   end
 end

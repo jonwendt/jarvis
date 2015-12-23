@@ -25,7 +25,11 @@ class Alarm < ActiveRecord::Base
 
   def self.schedule_alarms
     Sidekiq::ScheduledSet.new.clear # TODO - Only clear scheduled alarms tasks
-    alarms = Alarm.where("days = 'ALL'") # Implement days as string
+    current_time = Time.now.in_time_zone
+    alarms = Alarm.where("days = 'ALL'").select { |alarm|
+      alarm.time.hour >= current_time.hour and
+      (alarm.time.hour == current_time.hour ? alarm.time.min >= current_time.min : true)
+    } # Implement days as string
     alarms.each do |alarm|
       time = Date.today.in_time_zone + alarm.time.hour.hours + alarm.time.min.minutes
       AlarmBellJob.perform_at(time, alarm.id)

@@ -1,9 +1,11 @@
-<h1>Alarms</h1>
+<h1 style='display: inline-block'>Alarms</h1>
+
+<a href="<%= new_alarm_path %>" ><i class="fa fa-plus-circle fa-3x" style="color: #337ab7; margin-left: 10px; margin-bottom: 0px" data-toggle="tooltip" data-placement="top" title="New Alarm"></i></a>
 
 <hr>
 
 <% @alarms.each do |alarm| %>
-  <a class="btn btn-default btn-lg" href="<%= edit_alarm_path(alarm) %>" style="padding: 20px; margin-right: 15px">
+  <a class="btn btn-default btn-lg" href="<%= edit_alarm_path(alarm) %>" style="padding: 20px; margin-right: 15px;">
     <%= alarm.title %>
     <br>
     <i class="fa fa-clock-o fa-5x"></i>
@@ -15,4 +17,10 @@
 <br>
 <br>
 
-<%= link_to 'New Alarm', new_alarm_path, class: 'btn btn-primary' %>
+<%#= link_to 'New Alarm', new_alarm_path, class: 'btn btn-primary btn-lg' %>
+
+<script type="text/javascript">
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>

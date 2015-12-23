@@ -1,3 +1,17 @@
+Home page: "I'm here to help."
+
+Add Music choice to Alarms
+
+Make Moods model
+
+
+
+
+
+
+
+================
+
 My personal helper program
 
 Schedule page. Combine calendar events and incomplete tasks to show a schedule. Things can be rearranged, auto generated. Tell Jarvis what time you want to wake up. Alarm will be set for then and meal times will be scheduled accordingly. Sprinkle tasks throughout the day. Rearrange when completed/ignored. Task priority. Time priority (morning, afternoon, night, any combination)
